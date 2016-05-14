@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from 'angular2/core';
-import {RouteParams} from 'angular2/router';
+import {Component, Input, OnInit} from '@angular/core';
+import {Routes, RouteSegment} from '@angular/router';
 
 import {Hero} from './hero';
 import {HeroService} from './hero.service';
@@ -14,19 +14,21 @@ export class HeroDetailComponent implements OnInit {
     hero: Hero;
     
     constructor(
-        private _heroService: HeroService,
-        private _routeParams: RouteParams) {
-            
+        private _heroService: HeroService) {
     }
     
     ngOnInit() {
-        let id = parseInt(this._routeParams.get('id'));
-        this._heroService.getHero(id)
-            .then(hero => this.hero = hero);
+        
     }
     
     goBack() {
         window.history.back();
+    }
+    
+    routerOnActivate(curr: RouteSegment) {
+        let id = parseInt(curr.getParam('id'));
+        this._heroService.getHero(id)
+            .then(hero => this.hero = hero);
     }
     
 }

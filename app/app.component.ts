@@ -1,25 +1,25 @@
-import {Component} from 'angular2/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+import {Component} from '@angular/core';
+import { Route, Routes, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router';
 import {HeroesComponent} from './heroes.component';
 import {HeroService} from './hero.service';
 import {DashboardComponent} from './dashboard.component';
 import {HeroDetailComponent} from './hero-detail.component';
 
-@RouteConfig([
+@Routes([
     {
         path: '/heroes',
-        name: 'Heroes',
         component: HeroesComponent
     },
     {
+        path: '/',
+        component: DashboardComponent
+    },
+    {
         path: '/dashboard',
-        name: 'Dashboard',
-        component: DashboardComponent,
-        useAsDefault: true
+        component: DashboardComponent
     },
     {
         path: '/detail/:id',
-        name: 'HeroDetail',
         component: HeroDetailComponent
     }
 ])
